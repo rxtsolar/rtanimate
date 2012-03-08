@@ -1,0 +1,55 @@
+Guangyu Sun
+gs2564
+--------------------------------------------------------------------------------
+USAGE:
+
+        ./main_t06m01 <scene.txt> [output.exr]
+
+    The default output will be named as "output.exr"
+--------------------------------------------------------------------------------
+FEATURES:
+
+    In the scene file, you can add a line with several options like:
+
+        o [myOpt1] [myOpt2] ... [myOptn]
+
+basic:
+    basic Ray tracing
+    Command file read
+    Camera / film setup
+    Primary ray generation
+    Ray-object intersection 
+    Output image setup
+
+Advanced:
+    Recursive ray tracing (optional: default: 3; 0 means no reflection)
+
+        r num_of_recursion
+
+    Phong/Blinn-Phong shading
+    Basic light types - point, directional, ambient
+    Hard shadows
+    Ideal specular reflection
+    Geometry types: spheres, triangles, planes
+
+Expert:
+    Antialiasing (optional: default: closed)
+
+        a num_of_samples_for_each_dim
+
+    Read / render obj files, with normal interpolation on triangles
+    Ray-object acceleration: BVH structure (optional: default: disabled)
+
+        b
+
+More:
+    Multithreading with TBB (optional: default: disabled)
+
+        m
+
+    Area lights & soft shadows (optional: within light struct)
+    samp is the number of samples and rad is the radius of light
+
+        l r x y z r g b samp rad
+
+--------------------------------------------------------------------------------
