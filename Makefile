@@ -1,4 +1,5 @@
 all: process
+	rm *.o
 
 CC = g++
 INCLUDE = -I/usr/include/opencv
