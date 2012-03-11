@@ -38,6 +38,15 @@ protected:
     virtual void setBVH() {}
     virtual void setTBB() {}
 
+    virtual void myCamera(float3 pos, float3 dir, float3 velo, float3 acce,
+		    float d, float iw, float ih, int pw, int ph) {}
+    virtual void myLight(float3 pos, float3 rgb, float3 velo, float3 acce) {}
+    virtual void mySphere(float3 pos, float r, float3 velo, float3 acce,
+		    float e, float mu, float mass) {}
+    virtual void myPlane(float3 n, float d, float e, float mu) {}
+    virtual void setFrames(int frames) {}
+    virtual void setTimeStep(float dt) {}
+
 public:
     virtual void parse(const char* file);
 };

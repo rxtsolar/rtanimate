@@ -102,6 +102,51 @@ void Parser::parse(const char *file) {
                     cerr << "Option error: invalid option" << endl;
                 }
             }
+	} else if (cmd == "ms") {
+		float3 pos;
+		float r;
+		float3 velo;
+		float3 acce;
+		float e;
+		float mu;
+		float mass;
+		iss >> pos >> r >> velo >> acce >> e >> mu >> mass;
+		mySphere(pos, r, velo, acce, e, mu, mass);
+	} else if (cmd == "mp") {
+		float3 n;
+		float d;
+		float e;
+		float mu;
+		iss >> n >> d >> e >> mu;
+		myPlane(n, d, e, mu);
+	} else if (cmd == "ml") {
+		float3 pos;
+		float3 rgb;
+		float3 velo;
+		float3 acce;
+		iss >> pos >> rgb >> velo >> acce;
+		myLight(pos, rgb, velo, acce);
+	} else if (cmd == "mc") {
+		float3 pos;
+		float3 dir;
+		float3 velo;
+		float3 acce;
+		float d;
+		float iw;
+		float ih;
+		int pw;
+		int ph;
+		iss >> pos >> dir >> velo >> acce;
+		iss >> d >> iw >> ih >> pw >> ph;
+		myCamera(pos, dir, velo, acce, d, iw, ih, pw, ph);
+	} else if (cmd == "mf") {
+		int frames;
+		iss >> frames;
+		setFrames(frames);
+	} else if (cmd == "mt") {
+		float dt;
+		iss >> dt;
+		setTimeStep(dt);
         } else {
             cerr << "Parser error: invalid command at line " << line << endl;
         }
