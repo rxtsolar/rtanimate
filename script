@@ -1,0 +1,8 @@
+#!/bin/bash
+./create test.sce aaa
+for file in *.rnd; do
+	./process $file $file.png
+done
+mkdir output
+mv *.png output
+rm *.rnd
