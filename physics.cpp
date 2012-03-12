@@ -78,7 +78,7 @@ void Physics::write(const char* name)
 {
 	for (int i = 0; i < frames; i++) {
 		stringstream ss;
-		ss << name << '_' << i;
+		ss << name << '_' << i << ".rnd";
 		ofstream file(ss.str().c_str());
 		file << "/ this is frame " << i << " of " << name << endl;
 		// camera
@@ -149,5 +149,91 @@ void Physics::write(const char* name)
 			file << itp->d << endl;
 		}
 		file << endl;
+
+		move();
 	}
+}
+
+void Physics::move()
+{
+	cam.move(dt);
+	for (vector<Light>::iterator itl = lights.begin();
+			itl != lights.end(); itl++)
+		itl->move(dt);
+
+	for (vector<Sphere>::iterator its = spheres.begin();
+			its != spheres.end(); its++)
+		its->move(dt);
+
+	for (vector<Sphere>::iterator its = spheres.begin();
+			its != spheres.end(); its++)
+		its->collide(spheres, planes);
+}
+
+void Sphere::move(float dt)
+{
+	pos += velo * dt;
+	velo += acce * dt;
+}
+
+void Sphere::checkAndChange(Sphere& s)
+{
+	if (this == &s)
+		return;
+
+	Vector3f dist = s.pos - pos;
+	if (dist.dot(dist) > (r + s.r)*(r + s.r))
+		return;
+	if (s.velo.dot(dist) > velo.dot(dist))
+		return;
+
+	dist = dist.normalize();
+	Vector3f vn1 = velo.dot(dist) * dist;
+	Vector3f vn2 = s.velo.dot(dist) * dist;
+	Vector3f vt1 = velo - vn1;
+	Vector3f vt2 = s.velo - vn2;
+	float ee = e * s.e;
+
+	Vector3f vvn1 = (ee*mass - s.mass)*vn1 + (ee + 1)*s.mass*vn2;
+	vvn1 /= ee*(mass + s.mass);
+	Vector3f vvn2 = (ee + 1)*mass*vn1 + (ee*s.mass - mass)*vn2;
+	vvn2 /= ee*(mass + s.mass);
+
+	velo = vvn1 + vt1;
+	s.velo = vvn2 + vt2;
+}
+
+void Sphere::checkAndChange(const Plane& p)
+{
+	if (pos.dot(p.n) + p.d > r)
+		return;
+
+	if (velo.dot(p.n) > 0)
+		return;
+
+	Vector3f vn = velo.dot(p.n) * p.n;
+	Vector3f vt = velo - vn;
+	float ee = e * p.e;
+	float mm = mu + p.mu;
+
+	Vector3f vvn = -ee * vn;
+	Vector3f vvt;
+	float v = vt.norm2() - (1 + ee)*mm*vn.norm2();
+	if (v > 0)
+		vvt = v * vt.normalize();
+	else
+		vvt = Vector3f(0, 0, 0);
+
+	velo = vvn + vvt;
+}
+
+void Sphere::collide(vector<Sphere>& spheres,
+		const vector<Plane>& planes)
+{
+	for (vector<Sphere>::iterator its = spheres.begin();
+			its != spheres.end(); its++)
+		checkAndChange(*its);
+	for (vector<Plane>::const_iterator itp = planes.begin();
+			itp != planes.end(); itp++)
+		checkAndChange(*itp);
 }

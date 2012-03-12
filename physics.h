@@ -48,8 +48,11 @@ struct Material {
 };
 
 struct Sphere {
-	void move(float dt, const vector<Sphere>& spheres,
-			const vector<Plane>& planes) {}
+	void move(float dt);
+	void collide(vector<Sphere>& spheres,
+			const vector<Plane>& planes);
+	void checkAndChange(Sphere& sphere);
+	void checkAndChange(const Plane& plane);
 	Vector3f pos;
 	Vector3f velo;
 	Vector3f acce;
