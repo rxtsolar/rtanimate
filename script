@@ -1,8 +1,12 @@
 #!/bin/bash
 ./create test.sce aaa
 for file in *.rnd; do
+	cat static.ssc >> $file
 	./process $file $file.png
 done
 mkdir output
 mv *.png output
 rm *.rnd
+tar -cjvf output.tar.bz2 output
+ffmpeg -f image2 -i output/aaa_%d.rnd.png output.mpeg
+rm output -rf

@@ -1,5 +1,5 @@
 all: render create
-#rm *.o
+	rm *.o
 
 CC = g++
 INCLUDE = -I/usr/include/opencv
