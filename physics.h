@@ -19,7 +19,7 @@ struct Plane;
 class Physics;
 
 struct Camera {
-	void move(float dt) {}
+	void move(float dt);
 	Vector3f pos;
 	Vector3f dir;
 	Vector3f velo;
@@ -32,7 +32,7 @@ struct Camera {
 };
 
 struct Light {
-	void move(float dt) {}
+	void move(float dt);
 	Vector3f pos;
 	Vector3f rgb;
 	Vector3f velo;

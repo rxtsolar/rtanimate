@@ -8,5 +8,5 @@ mkdir output
 mv *.png output
 rm *.rnd
 tar -cjvf output.tar.bz2 output
-ffmpeg -f image2 -i output/aaa_%d.rnd.png output.mpeg
+ffmpeg -f image2 -i output/aaa_%d.rnd.png -sameq output.mpeg
 rm output -rf

@@ -170,6 +170,18 @@ void Physics::move()
 		its->collide(spheres, planes);
 }
 
+void Camera::move(float dt)
+{
+	pos += velo * dt;
+	velo += acce * dt;
+}
+
+void Light::move(float dt)
+{
+	pos += velo * dt;
+	velo += acce * dt;
+}
+
 void Sphere::move(float dt)
 {
 	pos += velo * dt;
