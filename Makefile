@@ -1,4 +1,4 @@
-all: render create
+all: render create model
 	rm *.o
 
 CC = g++
@@ -12,6 +12,9 @@ render: main.o parse.o raytracer.o scene.o mesh.o
 
 create: create.o physics.o parse.o mesh.o
 	$(CC) $(LFLAGS) create create.o physics.o parse.o mesh.o
+
+model: model.o modeling.o
+	$(CC) $(INCLUDE) $(LFLAGS) model model.o modeling.o $(LIBS)
 
 parse.h: mesh.h
 raytracer.h: mesh.h scene.h parse.h
@@ -39,6 +42,12 @@ create.o: create.cpp physics.h
 
 physics.o: physics.cpp physics.h
 	$(CC) $(INCLUDE) $(CFLAGS) physics.cpp
+
+model.o: model.cpp model.h
+	$(CC) $(INCLUDE) $(CFLAGS) model.cpp
+
+modeling.o: modeling.cpp model.h
+	$(CC) $(INCLUDE) $(CFLAGS) modeling.cpp
 
 .PHONY: clean
 clean:

@@ -1,0 +1,6 @@
+#!/bin/bash
+./model birthday.jpg test.sce
+./create test.sce aaa
+cat static.ssc >> aaa_0.rnd
+./process aaa_0.rnd aaa.png
+rm *.rnd
