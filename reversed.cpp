@@ -8,6 +8,8 @@
 using namespace phy;
 using namespace std;
 
+Random rd;
+
 Material& Material::operator=(const Material& m)
 {
 	diff = m.diff;
@@ -48,11 +50,10 @@ void Physics::mySphere(float3 pos, float r, float3 velo,
 	sphere.pos = Vector3f(pos.x, pos.y, pos.z);
 	sphere.r = r;
 	if (velo.x == 0 && velo.y == 0 && velo.z == 0) {
-		Random rd;
 		sphere.velo = Vector3f(rd.getRandf1(),
 				rd.getRandf1(),
 				rd.getRandf1());
-		sphere.velo *= r / 10;
+		sphere.velo *= r / 100;
 	} else {
 		sphere.velo = Vector3f(velo.x, velo.y, velo.z);
 	}
@@ -87,7 +88,7 @@ void Physics::write(const char* name)
 {
 	for (int i = 0; i < frames; i++) {
 		stringstream ss;
-		ss << name << '_' << i << ".rnd";
+		ss << name << '_' << frames - i - 1 << ".rnd";
 		ofstream file(ss.str().c_str());
 		file << "/ this is frame " << i << " of " << name << endl;
 		// camera

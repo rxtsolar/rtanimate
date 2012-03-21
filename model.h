@@ -7,7 +7,7 @@ namespace model {
 
 class Model {
 public:
-	Model() : p_width(8), p_height(8) {}
+	Model() : p_width(16), p_height(16) {}
 	void load(const char* iname);
 	void write(const char* mname);
 private:

@@ -3,7 +3,7 @@ all: render create model
 
 CC = g++
 INCLUDE = -I/usr/include/opencv
-CFLAGS = -g -Wall -c
+CFLAGS = -O2 -Wall -c
 LFLAGS = -o
 LIBS = -lhighgui -ltbb -lcxcore
 
