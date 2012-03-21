@@ -1,4 +1,5 @@
 #!/bin/bash
+./model birthday.jpg test.sce
 ./create test.sce aaa
 for file in *.rnd; do
 	cat static.ssc >> $file

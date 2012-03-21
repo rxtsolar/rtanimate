@@ -73,10 +73,10 @@ struct Plane {
 
 class Physics : public Parser {
 public:
-	void write(const char* name);
+	virtual void write(const char* name);
 
 protected:
-	void move();
+	virtual void move();
 	virtual void material(float3 diff, float3 spec, float r, float3 refl);
 	virtual void myCamera(float3 pos, float3 dir, float3 velo, float3 acce,
 			float d, float iw, float ih, int pw, int ph);

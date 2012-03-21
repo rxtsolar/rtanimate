@@ -10,8 +10,8 @@ LIBS = -lhighgui -ltbb -lcxcore
 render: main.o parse.o raytracer.o scene.o mesh.o
 	$(CC) $(INCLUDE) $(LFLAGS) process main.o parse.o raytracer.o scene.o mesh.o $(LIBS)
 
-create: create.o physics.o parse.o mesh.o
-	$(CC) $(LFLAGS) create create.o physics.o parse.o mesh.o
+create: create.o reversed.o parse.o mesh.o
+	$(CC) $(LFLAGS) create create.o reversed.o parse.o mesh.o
 
 model: model.o modeling.o
 	$(CC) $(INCLUDE) $(LFLAGS) model model.o modeling.o $(LIBS)
@@ -40,8 +40,8 @@ mesh.o: mesh.cpp mesh.h vector3.h
 create.o: create.cpp physics.h
 	$(CC) $(INCLUDE) $(CFLAGS) create.cpp
 
-physics.o: physics.cpp physics.h
-	$(CC) $(INCLUDE) $(CFLAGS) physics.cpp
+reversed.o: reversed.cpp physics.h random.h
+	$(CC) $(INCLUDE) $(CFLAGS) reversed.cpp
 
 model.o: model.cpp model.h
 	$(CC) $(INCLUDE) $(CFLAGS) model.cpp

@@ -22,16 +22,16 @@ float psb = 0.1;
 float prr = 0.1;
 float prg = 0.1;
 float prb = 0.1;
-float pe = 0.9;
-float pmu = 0;
+float pe = 0.8;
+float pmu = 3;
 // camera info
 float cxf = 0;
 float cyf = 1;
 float czf = 1;
 float cwf = 2;
 float cdf = 3;
-int cwp = 800;
-int chp = 600;
+int cwp = 400;
+int chp = 300;
 // light info
 float lxf = 0.5;
 float lyf = 1;
@@ -41,7 +41,10 @@ float lg = 1;
 float lb = 1;
 // sphere info
 float smooth = 100;
-float factor = 0.3;
+float factor = 0.4;
+// video info
+int mf = 400;
+float mt = 0.04;
 
 void Model::load(const char* iname)
 {
@@ -62,8 +65,8 @@ void Model::write(const char* mname)
 	float y_offset = 0.5*p_width;
 
 	//time
-	file << "mf 1" << endl;
-	file << "mt 1" << endl;
+	file << "mf " << mf << endl;
+	file << "mt " << mt << endl;
 
 	//camera
 	file << "/ camera" << endl;
@@ -113,7 +116,7 @@ void Model::write(const char* mname)
 			file << j*p_height + z_offset << ' ';
 			file << factor*p_width << ' ';
 			//TODO need to modify
-			file << "0 0 0 0 0 0 1 0 10" << endl;
+			file << "0 0 0 0 -10 0 0.9 0 2" << endl;
 		}
 	}
 }
