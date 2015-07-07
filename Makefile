@@ -51,4 +51,4 @@ modeling.o: modeling.cpp model.h
 
 .PHONY: clean
 clean:
-	rm -f *.o process create
+	rm -f *.o process create model

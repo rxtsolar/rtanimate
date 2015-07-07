@@ -3,11 +3,20 @@ gs2564
 --------------------------------------------------------------------------------
 USAGE:
 
-        ./main_t06m01 <scene.txt> [output.exr]
+model: create spheres model by given image.
 
-    The default output will be named as "output.exr"
+    ./model image.png image.sce
+
+create: generate randome history frames of scattered spheres.
+
+    ./create image.sce aaa
+
+process: render each frame.
+
+ffmpeg can be used to combine the frames to a video.
+
 --------------------------------------------------------------------------------
-FEATURES:
+RAYTRACING FEATURES:
 
     In the scene file, you can add a line with several options like:
 
