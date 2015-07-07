@@ -5,7 +5,7 @@ CC = g++
 INCLUDE = -I/usr/include/opencv
 CFLAGS = -O2 -Wall -c
 LFLAGS = -o
-LIBS = -lhighgui -ltbb -lcxcore
+LIBS = -lopencv_highgui -lopencv_core -ltbb
 
 render: main.o parse.o raytracer.o scene.o mesh.o
 	$(CC) $(INCLUDE) $(LFLAGS) process main.o parse.o raytracer.o scene.o mesh.o $(LIBS)

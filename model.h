@@ -1,7 +1,7 @@
 #ifndef MODEL_H
 #define MODEL_H
 
-#include <cv.h>
+#include <opencv2/opencv.hpp>
 
 namespace model {
 
